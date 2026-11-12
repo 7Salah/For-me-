@@ -1,0 +1,9 @@
+{
+  "_comment": "Optional GLB avatars. A model is ignored unless safetyReviewed is true (see docs/V22-CONTENT-SAFETY.md). Kenney Mini Characters 2.0 (CC0), see KENNEY-LICENSE.txt.",
+  "models": [
+    { "id": "kenney-male-a", "name": "Student A", "url": "character-male-a.glb", "height": 1.6, "yaw": 0, "safetyReviewed": true },
+    { "id": "kenney-male-b", "name": "Student B", "url": "character-male-b.glb", "height": 1.6, "yaw": 0, "safetyReviewed": true },
+    { "id": "kenney-female-a", "name": "Student C", "url": "character-female-a.glb", "height": 1.6, "yaw": 0, "safetyReviewed": true },
+    { "id": "kenney-female-b", "name": "Student D", "url": "character-female-b.glb", "height": 1.6, "yaw": 0, "safetyReviewed": true }
+  ]
+}
