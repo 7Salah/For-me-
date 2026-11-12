@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0c1b31" />
+    <meta name="description" content="استكشف أكاديمية 7Salah في Academic Quest." />
+    <title>Academic Quest — 7Salah Scholar</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script src="../../config.js"></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <canvas id="academy-canvas" tabindex="0" aria-label="العالم ثلاثي الأبعاد للأكاديمية"></canvas>
+      <div class="sky-wash" aria-hidden="true"></div>
+
+      <header class="hud-top">
+        <a class="back-link" href="../../" aria-label="العودة إلى 7Salah Scholar">← <span data-copy="back">العودة للمنصة</span></a>
+        <section class="player-card" aria-label="معلومات اللاعب">
+          <div class="avatar-mark" aria-hidden="true">✦</div>
+          <div class="player-info">
+            <b id="player-name">مستكشف الأكاديمية</b>
+            <span><span data-copy="level">المستوى</span> 01 <i>·</i> 7Salah Scholar</span>
+          </div>
+          <div class="xp-block">
+            <div class="xp-caption"><span data-copy="xp">خبرة تجريبية</span><b>0 / 100</b></div>
+            <div class="xp-track"><span></span></div>
+          </div>
+        </section>
+        <div class="top-actions">
+          <button id="customize-open" class="icon-button" type="button" aria-label="تخصيص الشخصية" title="تخصيص الشخصية">✧</button>
+          <button id="settings-open" class="icon-button" type="button" aria-label="الإعدادات" title="الإعدادات">⚙</button>
+          <button id="pause-open" class="icon-button pause-button" type="button" aria-label="إيقاف مؤقت" title="إيقاف مؤقت">Ⅱ</button>
+        </div>
+      </header>
+
+      <div class="world-label"><span class="world-pulse"></span><span data-copy="location">ساحة الأكاديمية</span></div>
+      <div id="interaction-prompt" class="interaction-prompt" hidden><kbd>E</kbd><span></span></div>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <section id="welcome-screen" class="welcome-screen">
+        <div class="welcome-card">
+          <span class="eyebrow"><span>✦</span> 7SALAH SCHOLAR · ACADEMIC QUEST</span>
+          <h1 data-copy="title">أكاديميتك بانتظارك</h1>
+          <p data-copy="intro">ادخل الساحة الجامعية، تعرّف إلى شخصيتك، واستكشف أول مساحة تعليمية ثلاثية الأبعاد.</p>
+          <div class="welcome-meta"><span>◉ <span data-copy="single-player">استكشاف فردي</span></span><span>◇ <span data-copy="no-xp">الخبرة تجريبية</span></span></div>
+          <button id="enter-academy" class="primary-button" type="button"><span data-copy="enter">دخول الأكاديمية</span><b>↗</b></button>
+          <p id="session-note" class="session-note" data-copy="session-check">يتم التحقق من جلسة المنصة عند الدخول…</p>
+        </div>
+        <div class="welcome-decoration" aria-hidden="true"><span>✦</span><i></i><b>7</b></div>
+      </section>
+
+      <aside id="customize-panel" class="side-panel" aria-label="تخصيص الشخصية" hidden>
+        <div class="panel-heading"><div><span class="eyebrow" data-copy="character">الشخصية</span><h2 data-copy="customize">تخصيص المظهر</h2></div><button class="close-button" data-close="customize-panel" aria-label="إغلاق">×</button></div>
+        <label><span data-copy="hair">تسريحة الشعر</span><select id="hair-style"><option value="short">قصير</option><option value="bob">بوب</option><option value="long">طويل</option><option value="ponytail">ذيل حصان</option></select></label>
+        <div class="color-row"><label><span data-copy="hair-color">لون الشعر</span><input id="hair-color" type="color" value="#28334f" /></label><label><span data-copy="eye-color">لون العينين</span><input id="eye-color" type="color" value="#62d3d0" /></label></div>
+        <label><span data-copy="outfit">الزي المحتشم</span><select id="outfit"><option value="#345f91">أزرق أكاديمي</option><option value="#745b91">بنفسجي أنيق</option><option value="#3e766b">أخضر هادئ</option><option value="#b06755">مرجاني دافئ</option></select></label>
+        <label><span data-copy="shoes">الحذاء</span><select id="shoes"><option value="#f2eee7">عاجي</option><option value="#243248">كحلي</option><option value="#a97849">جلدي</option></select></label>
+        <label><span data-copy="bag">الحقيبة</span><select id="bag"><option value="backpack">حقيبة ظهر</option><option value="satchel">حقيبة كتف</option><option value="none">بدون</option></select></label>
+        <label><span data-copy="accessory">الإكسسوار</span><select id="accessory"><option value="hairclip">مشبك نجمة</option><option value="headband">عصابة رأس</option><option value="none">بدون</option></select></label>
+        <label><span data-copy="theme">سمة الألوان</span><select id="theme"><option value="aqua">أكوا</option><option value="gold">ذهبي</option><option value="rose">وردي</option></select></label>
+        <label><span data-copy="details">تفاصيل بصرية</span><select id="details"><option value="trim">حواف مضيئة</option><option value="classic">كلاسيكي</option><option value="glasses">نظارات دائرية</option></select></label>
+        <label id="avatar-model-row" hidden><span data-copy="avatar-model">نموذج الشخصية</span><select id="avatar-model"><option value="">إجرائي (افتراضي)</option></select></label>
+        <p class="panel-note" data-copy="custom-note">شخصية مؤقتة؛ الحركة والكاميرا منفصلتان وجاهزتان لاستبدالها بنموذج GLB لاحقاً.</p>
+      </aside>
+
+      <aside id="settings-panel" class="side-panel settings-panel" aria-label="إعدادات اللعبة" hidden>
+        <div class="panel-heading"><div><span class="eyebrow" data-copy="settings">الإعدادات</span><h2 data-copy="graphics">جودة الرسوم</h2></div><button class="close-button" data-close="settings-panel" aria-label="إغلاق">×</button></div>
+        <label><span data-copy="graphics">جودة الرسوم</span><select id="graphics-quality"><option value="low">منخفضة · الهاتف</option><option value="medium">متوسطة</option><option value="high">عالية</option></select></label>
+        <p class="panel-note" data-copy="settings-note">تُحفظ هذه الخيارات على هذا الجهاز فقط. لن تُحفظ خبرة حقيقية أو بيانات حساب.</p>
+      </aside>
+
+      <section id="pause-screen" class="modal-screen" hidden>
+        <div class="modal-card"><span class="eyebrow">ACADEMIC QUEST</span><h2 data-copy="paused">اللعبة متوقفة مؤقتاً</h2><button id="resume-game" class="primary-button" type="button"><span data-copy="resume">متابعة اللعب</span><b>▶</b></button><a class="return-link" href="../../" data-copy="return">العودة إلى المنصة</a></div>
+      </section>
+
+      <div class="touch-controls" aria-label="عناصر التحكم باللمس">
+        <div id="joystick" class="joystick" aria-label="عصا الحركة"><span class="joystick-knob"></span></div>
+        <div class="touch-actions"><button id="touch-run" type="button" data-copy="run">جري</button><button id="touch-jump" type="button" aria-label="قفز">↑</button><button id="touch-interact" type="button" data-copy="interact">تفاعل</button></div>
+      </div>
+      <footer class="desktop-hints"><span><kbd>W A S D</kbd> <i data-copy="move">حركة</i></span><span><kbd>Shift</kbd> <i data-copy="run">جري</i></span><span><kbd>Space</kbd> <i data-copy="jump">قفز</i></span><span><kbd>E</kbd> <i data-copy="interact">تفاعل</i></span><span><kbd>Esc</kbd> <i data-copy="menu">القائمة</i></span></footer>
+      <div id="loading-screen" class="loading-screen" hidden><span class="loading-mark">✦</span><b data-copy="loading">جارٍ تجهيز الأكاديمية…</b></div>
+    </main>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
